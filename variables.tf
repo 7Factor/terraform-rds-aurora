@@ -19,7 +19,14 @@ variable db_size {
 
 variable db_security_groups {
   type        = "list"
+  default     = []
   description = "Pass in a list of security groups that you want to assign to the database. Be smart with this."
+}
+
+variable allow_db_access_sgs {
+  type        = "list"
+  default     = []
+  description = "Pass in a list of security groups that will have access to your Aurora cluser. Be smart with this."
 }
 
 variable db_instance_class {
