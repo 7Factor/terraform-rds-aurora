@@ -15,12 +15,18 @@ variable additional_db_subnet_config {
   description = "An optional list of maps that describe the additional db subnets you want to create for the RDS. Make sure these don't collide with your primary subnets."
 }
 
+variable db_instance_count {
+  default     = 1
+  description = "The number of db instances to provision for the cluster. Defaults to 1."
+}
+
 variable db_name {
   description = "The name of the database to create."
 }
 
-variable db_size {
-  description = "The size of the database (in GB) to provision."
+variable db_engine {
+  default     = "aurora"
+  description = "Database engine to use. Defaults to aurora."
 }
 
 variable db_security_groups {

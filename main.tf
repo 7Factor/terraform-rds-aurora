@@ -7,61 +7,35 @@ data "aws_vpc" "primary_vpc" {
   id = "${var.vpc_id}"
 }
 
-resource "aws_db_subnet_group" "rds_subnet_group" {
-  name = "concourse-rds-subnet-group"
-
-  subnet_ids = [
-    "${aws_subnet.db_subnets.*.id}",
-    "${var.primary_db_subnets}",
-  ]
-
-  tags {
-    Name = "RDS Subnet Group for ${var.db_name}"
-  }
-}
-
-resource "aws_db_instance" "aurora_db" {
-  allocated_storage = "${var.db_size}"
-
-  # Choosing not to parameterize these pieces. They're static.
-  engine              = "aurora-mysql"
-  storage_type        = "io1"
-  publicly_accessible = false
+resource "aws_rds_cluster" "aurora_cluster" {
+  cluster_identifier  = "${var.db_name}-aurora-cluster"
   deletion_protection = true
+  engine              = "${var.db_engine}"
 
-  # left blank
-  engine_version = ""
+  db_subnet_group_name = "${aws_db_subnet_group.rds_subnet_group.name}"
 
   vpc_security_group_ids = [
     "${aws_security_group.allow_aurora_access.id}",
     "${var.db_security_groups}",
   ]
 
-  db_subnet_group_name = "${aws_db_subnet_group.rds_subnet_group.name}"
-
-  name           = "${var.db_name}"
-  instance_class = "${var.db_instance_class}"
-  username       = "${var.db_username}"
-  password       = "${var.db_password}"
-  port           = "${var.db_port}"
+  database_name   = "${var.db_name}"
+  master_username = "${var.db_username}"
+  master_password = "${var.db_password}"
+  port            = "${var.db_port}"
 }
 
-resource "aws_security_group" "allow_aurora_access" {
-  name        = "allow-aurora-access"
-  description = "Allow access to aurora instances."
-  vpc_id      = "${var.vpc_id}"
+resource "aws_rds_cluster_instance" "aurora_db" {
+  count              = "${var.db_instance_count}"
+  identifier         = "${var.db_name}-instance"
+  cluster_identifier = "${aws_rds_cluster.aurora_cluster.cluster_identifier}"
 
-  ingress {
-    from_port       = 3306
-    to_port         = 3306
-    protocol        = "TCP"
-    security_groups = "${var.allow_db_access_sgs}"
-  }
+  engine              = "${var.db_engine}"
+  publicly_accessible = false
 
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  # left blank
+  engine_version = ""
+
+  db_subnet_group_name = "${aws_db_subnet_group.rds_subnet_group.name}"
+  instance_class       = "${var.db_instance_class}"
 }
