@@ -18,7 +18,6 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
 
 resource "aws_db_instance" "concourse_db" {
   allocated_storage = "${var.db_size}"
-  storage_type      = "gp2"
 
   # Choosing not to parameterize these pieces. They're static.
   engine              = "aurora-mysql"
