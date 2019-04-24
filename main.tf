@@ -9,7 +9,7 @@ data "aws_vpc" "primary_vpc" {
 
 resource "aws_db_subnet_group" "rds_subnet_group" {
   name       = "concourse-rds-subnet-group"
-  subnet_ids = "${aws_subnet.db_subnets.*.id}"
+  subnet_ids = ["${aws_subnet.db_subnets.*.id}"]
 
   tags {
     Name = "RDS Subnet Group for ${var.db_name}"
