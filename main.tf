@@ -27,6 +27,7 @@ resource "aws_db_instance" "aurora_db" {
   engine              = "aurora-mysql"
   storage_type        = "gp2"
   publicly_accessible = false
+  deletion_protection = true
 
   # left blank
   engine_version = ""
