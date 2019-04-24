@@ -1,7 +1,7 @@
 vpc_id = "VPC-ID"
 
 # Private subnet for databases
-db_subnet_config = [
+additional_db_subnet_config = [
   {
     az = "us-east-1c"
     cidr = "172.0.4.0/24"

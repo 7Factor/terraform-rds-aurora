@@ -4,9 +4,15 @@ variable vpc_id {
 }
 
 # Database configuration
-variable db_subnet_config {
+variable primary_db_subnets {
   type        = "list"
-  description = "A list of maps that describe the db subnets you want to create for the RDS."
+  description = "A list a subnets to place your databases in. These should be private."
+}
+
+variable additional_db_subnet_config {
+  type        = "list"
+  default     = []
+  description = "An optional list of maps that describe the additional db subnets you want to create for the RDS. Make sure these don't collide with your primary subnets."
 }
 
 variable db_name {
