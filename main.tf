@@ -22,6 +22,7 @@ resource "aws_db_instance" "concourse_db" {
 
   # Choosing not to parameterize these pieces. They're static.
   engine              = "aurora-mysql"
+  storage_type        = "gp2"
   publicly_accessible = false
 
   # left blank

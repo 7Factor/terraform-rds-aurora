@@ -17,14 +17,6 @@ variable db_size {
   description = "The size of the database (in GB) to provision."
 }
 
-variable db_storage_type {
-  description = "The storage type for the database to create."
-}
-
-variable db_engine {
-  description = "The database engine to use. This will dictate the rest of our database related configuration."
-}
-
 variable db_security_groups {
   type        = "list"
   description = "Pass in a list of security groups that you want to assign to the database. Be smart with this."
