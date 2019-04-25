@@ -12,6 +12,8 @@ resource "aws_rds_cluster" "aurora_cluster" {
   deletion_protection = true
   engine              = "${var.db_engine}"
 
+  final_snapshot_identifier = "${var.db_name}-aurora-final-snapshot"
+
   db_subnet_group_name = "${aws_db_subnet_group.rds_subnet_group.name}"
 
   vpc_security_group_ids = [
@@ -26,7 +28,7 @@ resource "aws_rds_cluster" "aurora_cluster" {
 }
 
 resource "aws_rds_cluster_instance" "aurora_db" {
-  count              = "${var.db_instance_count}"
+  count              = "${var.x}"
   identifier         = "${var.db_name}-instance"
   cluster_identifier = "${aws_rds_cluster.aurora_cluster.cluster_identifier}"
 
