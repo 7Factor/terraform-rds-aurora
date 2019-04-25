@@ -40,4 +40,10 @@ resource "aws_rds_cluster_instance" "aurora_db" {
 
   db_subnet_group_name = "${aws_db_subnet_group.rds_subnet_group.name}"
   instance_class       = "${var.db_instance_class}"
+
+  # adding this as an extra precaution.
+  # an explicit deletion protection does not exist for instances
+  lifecycle {
+    prevent_destroy = true
+  }
 }
