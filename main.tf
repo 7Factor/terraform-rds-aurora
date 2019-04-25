@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">=0.10.7"
+  required_version = ">=0.11.13"
 }
 
 # Look up the primary VPC
