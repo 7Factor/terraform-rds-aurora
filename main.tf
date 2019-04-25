@@ -18,7 +18,7 @@ resource "aws_rds_cluster" "aurora_cluster" {
 
   vpc_security_group_ids = [
     "${aws_security_group.allow_aurora_access.id}",
-    "${var.db_security_groups}",
+    "${var.additional_db_security_groups}",
   ]
 
   database_name   = "${var.db_name}"

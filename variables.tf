@@ -29,10 +29,10 @@ variable db_engine {
   description = "Database engine to use. Defaults to aurora."
 }
 
-variable db_security_groups {
+variable additional_db_security_groups {
   type        = "list"
   default     = []
-  description = "Pass in a list of security groups that you want to assign to the database. Be smart with this."
+  description = "Pass in a list of additional security groups that you want to assign to the database. This is a good place to allow bastion access for example."
 }
 
 variable allow_db_access_sgs {
