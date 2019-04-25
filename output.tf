@@ -9,5 +9,6 @@ output "db_master_username" {
 }
 
 output "db_port" {
-  value = "${aws_rds_cluster.aurora_cluster.port}"
+  value       = "${aws_rds_cluster.aurora_cluster.port}"
+  description = "The port the database is running on."
 }
