@@ -40,4 +40,8 @@ resource "aws_security_group" "allow_aurora_access" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags {
+    Name = "Allow Aurora Access"
+  }
 }
