@@ -1,12 +1,12 @@
 resource "aws_db_subnet_group" "rds_subnet_group" {
   name = "concourse-rds-subnet-group"
 
-  subnet_ids = [
+  subnet_ids = flatten([
     "${aws_subnet.db_subnets.*.id}",
     "${var.primary_db_subnets}",
-  ]
+  ])
 
-  tags {
+  tags = {
     Name = "RDS Subnet Group for ${var.db_name}"
   }
 }
@@ -17,7 +17,7 @@ resource "aws_subnet" "db_subnets" {
   cidr_block        = "${lookup(var.additional_db_subnet_config[count.index], "cidr")}"
   availability_zone = "${lookup(var.additional_db_subnet_config[count.index], "az")}"
 
-  tags {
+  tags = {
     Name = "Private Subnet (${lookup(var.additional_db_subnet_config[count.index], "az")})"
   }
 }
@@ -41,7 +41,7 @@ resource "aws_security_group" "allow_aurora_access" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  tags = {
     Name = "Allow Aurora Access"
   }
 }

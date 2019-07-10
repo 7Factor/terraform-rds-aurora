@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">=0.11.13"
+  required_version = ">=0.12.3"
 }
 
 # Look up the primary VPC
@@ -16,10 +16,10 @@ resource "aws_rds_cluster" "aurora_cluster" {
 
   db_subnet_group_name = "${aws_db_subnet_group.rds_subnet_group.name}"
 
-  vpc_security_group_ids = [
+  vpc_security_group_ids = flatten([
     "${aws_security_group.allow_aurora_access.id}",
     "${var.additional_db_security_groups}",
-  ]
+  ])
 
   database_name   = "${var.db_name}"
   master_username = "${var.db_username}"
