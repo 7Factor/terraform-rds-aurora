@@ -12,7 +12,6 @@ additional_db_subnet_config = [
 ]
 
 db_name = "THE-NAME"
-db_size = 100
 
 additional_db_security_groups = ["SG-1", "SG-2"]
 db_instance_class             = "db.t2.micro"
