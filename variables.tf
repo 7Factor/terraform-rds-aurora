@@ -56,3 +56,8 @@ variable db_password {
 variable db_port {
   description = "The port. Like, for the database. And stuff."
 }
+
+variable "storage_encrypted" {
+  default     = false
+  description = "Switch to control encryption for the cluster. Defaults to false"
+}

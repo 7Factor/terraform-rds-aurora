@@ -11,6 +11,7 @@ resource "aws_rds_cluster" "aurora_cluster" {
   cluster_identifier  = "${var.db_name}-aurora-cluster"
   deletion_protection = true
   engine              = var.db_engine
+  storage_encrypted   = var.storage_encrypted
 
   final_snapshot_identifier = "${var.db_name}-aurora-final-snapshot"
 
