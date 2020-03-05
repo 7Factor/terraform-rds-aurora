@@ -5,12 +5,12 @@ variable vpc_id {
 
 # Database configuration
 variable primary_db_subnets {
-  type        = "list"
+  type        = list
   description = "A list a subnets to place your databases in. These should be private."
 }
 
 variable additional_db_subnet_config {
-  type        = "list"
+  type        = list
   default     = []
   description = "An optional list of maps that describe the additional db subnets you want to create for the RDS. Make sure these don't collide with your primary subnets."
 }
@@ -30,13 +30,13 @@ variable db_engine {
 }
 
 variable allow_db_access_sgs {
-  type        = "list"
+  type        = list
   default     = []
   description = "Pass in a list of security groups that will have access to your Aurora cluser. Be smart with this."
 }
 
 variable additional_db_security_groups {
-  type        = "list"
+  type        = list
   default     = []
   description = "Pass in a list of additional security groups that you want to assign to the database. This is a good place to allow bastion access for example."
 }
