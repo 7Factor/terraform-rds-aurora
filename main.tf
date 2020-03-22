@@ -10,7 +10,7 @@ data "aws_vpc" "primary_vpc" {
 resource "aws_rds_cluster" "aurora_cluster" {
   cluster_identifier  = "${var.db_name}-aurora-cluster"
   deletion_protection = true
-  engine              = var.db_engine
+  engine              = "aurora"
   storage_encrypted   = var.storage_encrypted
 
   final_snapshot_identifier = "${var.db_name}-aurora-final-snapshot"
@@ -33,11 +33,11 @@ resource "aws_rds_cluster_instance" "aurora_db" {
   identifier         = "${var.db_name}-instance-${count.index + 1}"
   cluster_identifier = aws_rds_cluster.aurora_cluster.cluster_identifier
 
-  engine              = var.db_engine
   publicly_accessible = false
 
   # left blank
   engine_version = ""
+  engine         = "aurora"
 
   db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
   instance_class       = var.db_instance_class

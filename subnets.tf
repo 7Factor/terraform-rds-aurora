@@ -1,5 +1,5 @@
 resource "aws_db_subnet_group" "rds_subnet_group" {
-  name = "concourse-rds-subnet-group"
+  name = "rds-subnet-group"
 
   subnet_ids = flatten([
     aws_subnet.db_subnets.*.id,

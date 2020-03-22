@@ -24,11 +24,6 @@ variable db_name {
   description = "The name of the database to create."
 }
 
-variable db_engine {
-  default     = "aurora"
-  description = "Database engine to use. Defaults to aurora."
-}
-
 variable allow_db_access_sgs {
   type        = list
   default     = []
