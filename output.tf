@@ -12,3 +12,8 @@ output "db_port" {
   value       = aws_rds_cluster.aurora_cluster.port
   description = "The port the database is running on."
 }
+
+oubput "db_endpoint" {
+  value       = aws_rds_cluster.aurora_cluster.endpoint
+  description = "The endpoint of the database cluster."
+}
