@@ -1,6 +1,6 @@
 output "db_name" {
   value       = aws_rds_cluster.aurora_cluster.database_name
-  description = "The name of the database."
+  description = "The name of the database you asked us to create."
 }
 
 output "db_master_username" {

@@ -23,8 +23,8 @@ resource "aws_rds_cluster" "aurora_cluster" {
   ])
 
   database_name   = var.db_name
-  master_username = var.db_username
-  master_password = var.db_password
+  master_username = var.db_master_username
+  master_password = var.db_master_password
   port            = var.db_port
 }
 

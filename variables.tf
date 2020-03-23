@@ -21,7 +21,7 @@ variable db_instance_count {
 }
 
 variable db_name {
-  description = "The name of the database to create."
+  description = "The name of a database to create."
 }
 
 variable allow_db_access_sgs {
@@ -40,12 +40,12 @@ variable db_instance_class {
   description = "The instance type to assign to the database."
 }
 
-variable db_username {
-  description = "The username for accessing the database."
+variable db_master_username {
+  description = "The master username for accessing the database. Don't use this for your app."
 }
 
-variable db_password {
-  description = "The password to access the DB. This is usually a 'master' or 'root' password, so don't be dumb and pass this in as clear text or check it in somewhere."
+variable db__master_password {
+  description = "The password to access the DB. This is usually a 'master' or 'root' password, so don't be dumb and pass this in as clear text or check it in somewhere. Also don't use this for your app."
 }
 
 variable db_port {
