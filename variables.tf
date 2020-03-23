@@ -44,7 +44,7 @@ variable db_master_username {
   description = "The master username for accessing the database. Don't use this for your app."
 }
 
-variable db__master_password {
+variable db_master_password {
   description = "The password to access the DB. This is usually a 'master' or 'root' password, so don't be dumb and pass this in as clear text or check it in somewhere. Also don't use this for your app."
 }
 
