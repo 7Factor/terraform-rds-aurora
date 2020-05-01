@@ -15,7 +15,8 @@ resource "aws_rds_cluster" "aurora_cluster" {
 
   final_snapshot_identifier = "${var.db_name}-aurora-final-snapshot"
 
-  db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
+  db_subnet_group_name            = aws_db_subnet_group.rds_subnet_group.name
+  db_cluster_parameter_group_name = var.db_cluster_parameter_group_name
 
   vpc_security_group_ids = flatten([
     aws_security_group.allow_aurora_access.id,

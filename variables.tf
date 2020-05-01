@@ -52,6 +52,11 @@ variable db_port {
   description = "The port. Like, for the database. And stuff."
 }
 
+variable db_cluster_parameter_group_name {
+  default     = ""
+  description = "The name of a custom parameter group for the database cluster."
+}
+
 variable "storage_encrypted" {
   default     = false
   description = "Switch to control encryption for the cluster. Defaults to false"
