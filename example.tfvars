@@ -15,8 +15,8 @@ additional_db_subnet_config = [
 
 db_name = "THE-NAME"
 
-additional_db_security_groups = ["SG-1", "SG-2"]
-db_instance_class             = "db.t2.small"
-db_master_username            = "dude"
-db_master_password            = "DON'T PUT THIS IN HERE"
-db_port                       = 3306
+allow_db_access_sgs = ["SG-1", "SG-2"]
+db_instance_class   = "db.t2.small"
+db_master_username  = "dude"
+db_master_password  = "DON'T PUT THIS IN HERE"
+db_port             = 3306

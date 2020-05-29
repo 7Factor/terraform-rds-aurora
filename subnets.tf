@@ -42,6 +42,6 @@ resource "aws_security_group" "allow_aurora_access" {
   }
 
   tags = {
-    Name = "Allow Aurora Access"
+    Name = "Allow ${var.db_name} Aurora Access"
   }
 }
