@@ -57,7 +57,17 @@ variable db_cluster_parameter_group_name {
   description = "The name of a custom parameter group for the database cluster."
 }
 
-variable "storage_encrypted" {
+variable storage_encrypted {
   default     = false
   description = "Switch to control encryption for the cluster. Defaults to false"
+}
+
+variable deletion_protection {
+  default     = true
+  description = "If you set this to false, there won't API level protection from deletion of data. Mostly here for testing."
+}
+
+variable skip_final_snapshot {
+  default     = false
+  description = "If you set this to true, it won't store a backup if the db is deleted. Mostly here for testing."
 }
