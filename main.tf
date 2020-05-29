@@ -2,25 +2,30 @@ terraform {
   required_version = ">=0.12.3"
 }
 
+provider "aws" {
+  version = "2.64"
+}
+
 # Look up the primary VPC
 data "aws_vpc" "primary_vpc" {
   id = var.vpc_id
 }
 
 resource "aws_rds_cluster" "aurora_cluster" {
-  cluster_identifier  = "${var.db_name}-aurora-cluster"
-  deletion_protection = true
-  engine              = "aurora"
-  storage_encrypted   = var.storage_encrypted
+  cluster_identifier = "${var.db_name}-aurora-cluster"
+  engine             = "aurora"
+  storage_encrypted  = var.storage_encrypted
 
   final_snapshot_identifier = "${var.db_name}-aurora-final-snapshot"
+  skip_final_snapshot       = var.skip_final_snapshot
+  deletion_protection       = var.deletion_protection
 
   db_subnet_group_name            = aws_db_subnet_group.rds_subnet_group.name
   db_cluster_parameter_group_name = var.db_cluster_parameter_group_name
 
   vpc_security_group_ids = flatten([
     aws_security_group.allow_aurora_access.id,
-    var.additional_db_security_groups,
+    var.allow_db_access_sgs,
   ])
 
   database_name   = var.db_name
@@ -42,10 +47,4 @@ resource "aws_rds_cluster_instance" "aurora_db" {
 
   db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
   instance_class       = var.db_instance_class
-
-  # adding this as an extra precaution.
-  # an explicit deletion protection does not exist for instances
-  lifecycle {
-    prevent_destroy = true
-  }
 }

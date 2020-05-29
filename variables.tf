@@ -5,8 +5,8 @@ variable vpc_id {
 
 # Database configuration
 variable primary_db_subnets {
-  type        = list
-  description = "A list a subnets to place your databases in. These should be private."
+  type        = list(string)
+  description = "A list of subnets to place your databases in. These should be private."
 }
 
 variable additional_db_subnet_config {
@@ -25,15 +25,9 @@ variable db_name {
 }
 
 variable allow_db_access_sgs {
-  type        = list
+  type        = list(string)
   default     = []
-  description = "Pass in a list of security groups that will have access to your Aurora cluser. Be smart with this."
-}
-
-variable additional_db_security_groups {
-  type        = list
-  default     = []
-  description = "Pass in a list of additional security groups that you want to assign to the database. This is a good place to allow bastion access for example."
+  description = "Pass in a list of security groups that will have access to your Aurora cluster. Be smart with this."
 }
 
 variable db_instance_class {
@@ -57,7 +51,17 @@ variable db_cluster_parameter_group_name {
   description = "The name of a custom parameter group for the database cluster."
 }
 
-variable "storage_encrypted" {
+variable storage_encrypted {
   default     = false
   description = "Switch to control encryption for the cluster. Defaults to false"
+}
+
+variable deletion_protection {
+  default     = true
+  description = "If you set this to false, there won't API level protection from deletion of data. Mostly here for testing."
+}
+
+variable skip_final_snapshot {
+  default     = false
+  description = "If you set this to true, it won't store a backup if the db is deleted. Mostly here for testing."
 }
