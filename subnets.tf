@@ -1,5 +1,5 @@
 resource "aws_db_subnet_group" "rds_subnet_group" {
-  name = "rds-subnet-group"
+  name = "${var.db_name}-rds-subnet-group"
 
   subnet_ids = flatten([
     aws_subnet.db_subnets.*.id,
@@ -23,7 +23,7 @@ resource "aws_subnet" "db_subnets" {
 }
 
 resource "aws_security_group" "allow_aurora_access" {
-  name        = "allow-aurora-access"
+  name        = "allow-${var.db_name}-aurora-access"
   description = "Allow access to aurora instances."
   vpc_id      = var.vpc_id
 
