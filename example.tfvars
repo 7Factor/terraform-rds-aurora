@@ -1,5 +1,7 @@
 vpc_id = "VPC-ID"
 
+primary_db_subnets = ["SUBNET-1", "SUBNET-2"]
+
 # Private subnet for databases
 additional_db_subnet_config = [
   {
@@ -15,6 +17,6 @@ db_name = "THE-NAME"
 
 additional_db_security_groups = ["SG-1", "SG-2"]
 db_instance_class             = "db.t2.micro"
-db_username                   = "dude"
-db_password                   = "DON'T PUT THIS IN HERE"
+db_master_username            = "dude"
+db_master_password            = "DON'T PUT THIS IN HERE"
 db_port                       = 3306

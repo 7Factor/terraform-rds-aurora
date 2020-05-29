@@ -5,8 +5,8 @@ variable vpc_id {
 
 # Database configuration
 variable primary_db_subnets {
-  type        = list
-  description = "A list a subnets to place your databases in. These should be private."
+  type        = list(string)
+  description = "A list of subnets to place your databases in. These should be private."
 }
 
 variable additional_db_subnet_config {
@@ -25,13 +25,13 @@ variable db_name {
 }
 
 variable allow_db_access_sgs {
-  type        = list
+  type        = list(string)
   default     = []
   description = "Pass in a list of security groups that will have access to your Aurora cluser. Be smart with this."
 }
 
 variable additional_db_security_groups {
-  type        = list
+  type        = list(string)
   default     = []
   description = "Pass in a list of additional security groups that you want to assign to the database. This is a good place to allow bastion access for example."
 }
