@@ -2,10 +2,6 @@ terraform {
   required_version = ">=0.12.3"
 }
 
-provider "aws" {
-  version = "2.64"
-}
-
 # Look up the primary VPC
 data "aws_vpc" "primary_vpc" {
   id = var.vpc_id
