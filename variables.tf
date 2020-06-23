@@ -65,3 +65,12 @@ variable skip_final_snapshot {
   default     = false
   description = "If you set this to true, it won't store a backup if the db is deleted. Mostly here for testing."
 }
+
+variable "engine_version" {
+  default     = ""
+  description = "Engine version for the target engine. Defaults to blank, which gets you the default engine."
+}
+variable "engine" {
+  default     = "aurora"
+  description = "Engine name, defaults to aurora."
+}
