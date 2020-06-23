@@ -9,7 +9,8 @@ data "aws_vpc" "primary_vpc" {
 
 resource "aws_rds_cluster" "aurora_cluster" {
   cluster_identifier = "${var.db_name}-aurora-cluster"
-  engine             = "aurora"
+  engine             = var.engine
+  engine_version     = var.engine_version
   storage_encrypted  = var.storage_encrypted
 
   final_snapshot_identifier = "${var.db_name}-aurora-final-snapshot"
