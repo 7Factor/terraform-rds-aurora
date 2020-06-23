@@ -38,7 +38,7 @@ resource "aws_rds_cluster_instance" "aurora_db" {
   publicly_accessible = false
 
   engine_version = var.engine_version
-  engine         = var.engine
+  engine         = ""
 
   db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
   instance_class       = var.db_instance_class
