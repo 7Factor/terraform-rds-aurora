@@ -16,7 +16,7 @@ resource "aws_rds_cluster" "aurora_cluster" {
   skip_final_snapshot       = var.skip_final_snapshot
   deletion_protection       = var.deletion_protection
 
-  db_subnet_group_name            = aws_db_subnet_group.rds_subnet_group.name
+  db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
 
   vpc_security_group_ids = flatten([
     aws_security_group.allow_aurora_access.id,
@@ -36,7 +36,7 @@ resource "aws_rds_cluster_instance" "aurora_db" {
 
   publicly_accessible = false
 
-  engine_version = ""
+  engine_version = var.engine_version
   engine         = var.engine
 
   db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name

@@ -65,3 +65,8 @@ variable "engine" {
   default     = "aurora"
   description = "Engine name, defaults to aurora."
 }
+
+variable engine_version {
+  default     = ""
+  description = "This defaults to blank, but you'll need to sort which version of aurora you use along with the engine to give this a parameter it's ok with."
+}
