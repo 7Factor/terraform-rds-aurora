@@ -42,8 +42,4 @@ resource "aws_rds_cluster_instance" "aurora_db" {
 
   db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
   instance_class       = var.db_instance_class
-
-  lifecycle {
-    prevent_destroy = true
-  }
 }
