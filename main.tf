@@ -13,7 +13,7 @@ resource "aws_rds_cluster" "aurora_cluster" {
   engine_version     = var.engine_version
   storage_encrypted  = var.storage_encrypted
 
-  final_snapshot_identifier = "${var.db_name}-aurora-final-snapshot-${timestamp()}"
+  final_snapshot_identifier = "${var.db_name}-aurora-final-snapshot-${formatdate("YYYY-MM-DD-hhmmssZ", timestamp())}"
   skip_final_snapshot       = var.skip_final_snapshot
   deletion_protection       = var.deletion_protection
 
