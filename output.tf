@@ -17,3 +17,8 @@ output "db_endpoint" {
   value       = aws_rds_cluster.aurora_cluster.endpoint
   description = "The endpoint of the database cluster."
 }
+
+output "db_cluster_id" {
+  value       = aws_rds_cluster.aurora_cluster.id
+  description = "The id of the database cluster."
+}
