@@ -41,8 +41,9 @@ resource "aws_rds_cluster_instance" "aurora_db_delete" {
 
   publicly_accessible = false
 
-  engine_version = var.engine_version
-  engine         = var.engine
+  engine_version       = var.engine_version
+  engine               = var.engine
+  parameter_group_name = var.parameter_group_name
 
   db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
   instance_class       = var.db_instance_class
@@ -59,8 +60,9 @@ resource "aws_rds_cluster_instance" "aurora_db_no_delete" {
 
   publicly_accessible = false
 
-  engine_version = var.engine_version
-  engine         = var.engine
+  engine_version       = var.engine_version
+  engine               = var.engine
+  parameter_group_name = var.parameter_group_name
 
   db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
   instance_class       = var.db_instance_class
