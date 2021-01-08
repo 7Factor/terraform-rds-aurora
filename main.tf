@@ -19,6 +19,8 @@ resource "aws_rds_cluster" "aurora_cluster" {
 
   db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
 
+  db_cluster_parameter_group_name = var.cluster_parameter_group_name
+
   vpc_security_group_ids = flatten([
     aws_security_group.allow_aurora_access.id,
     var.allow_db_access_sgs,
@@ -43,7 +45,6 @@ resource "aws_rds_cluster_instance" "aurora_db_delete" {
 
   engine_version       = var.engine_version
   engine               = var.engine
-  parameter_group_name = var.parameter_group_name
 
   db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
   instance_class       = var.db_instance_class
@@ -60,12 +61,9 @@ resource "aws_rds_cluster_instance" "aurora_db_no_delete" {
 
   publicly_accessible = false
 
-  engine_version       = var.engine_version
-  engine               = var.engine
-  parameter_group_name = var.parameter_group_name
-
-  db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
-  instance_class       = var.db_instance_class
+  engine_version = var.engine_version
+  engine         = var.engine
+  instance_class = var.db_instance_class
 
   lifecycle {
     prevent_destroy = true

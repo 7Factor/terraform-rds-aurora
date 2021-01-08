@@ -71,7 +71,7 @@ variable engine_version {
   description = "This defaults to blank, but you'll need to sort which version of aurora you use along with the engine to give this a parameter it's ok with."
 }
 
-variable parameter_group_name {
+variable cluster_parameter_group_name {
   default     = null
   description = "A cluster parameter group to associate with the cluster."
 }
