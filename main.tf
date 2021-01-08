@@ -63,7 +63,9 @@ resource "aws_rds_cluster_instance" "aurora_db_no_delete" {
 
   engine_version = var.engine_version
   engine         = var.engine
-  instance_class = var.db_instance_class
+
+  db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
+  instance_class       = var.db_instance_class
 
   lifecycle {
     prevent_destroy = true
