@@ -28,8 +28,8 @@ resource "aws_security_group" "allow_aurora_access" {
   vpc_id      = var.vpc_id
 
   ingress {
-    from_port       = 3306
-    to_port         = 3306
+    from_port       = var.db_port
+    to_port         = var.db_port
     protocol        = "TCP"
     security_groups = var.allow_db_access_sgs
   }
