@@ -78,5 +78,5 @@ variable "cluster_parameter_group_name" {
 
 variable "performance_insights_enabled" {
   default     = false
-  description = "Enable performance insights on all database instances. Defaults to false"
+  description = "Enable performance insights on all database instances in the cluster. Defaults to false"
 }
