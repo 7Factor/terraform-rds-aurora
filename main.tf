@@ -49,6 +49,8 @@ resource "aws_rds_cluster_instance" "aurora_db_delete" {
   db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
   instance_class       = var.db_instance_class
 
+  performance_insights_enabled = var.performance_insights_enabled
+
   lifecycle {
     prevent_destroy = false
     ignore_changes  = [engine_version]
@@ -67,6 +69,8 @@ resource "aws_rds_cluster_instance" "aurora_db_no_delete" {
 
   db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
   instance_class       = var.db_instance_class
+
+  performance_insights_enabled = var.performance_insights_enabled
 
   lifecycle {
     prevent_destroy = true
