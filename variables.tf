@@ -81,3 +81,8 @@ variable "cluster_parameter_group_name" {
   default     = null
   description = "A cluster parameter group to associate with the cluster."
 }
+
+variable "performance_insights_enabled" {
+  default     = false
+  description = "Enable performance insights on all database instances in the cluster. Defaults to false"
+}
