@@ -24,10 +24,16 @@ variable "db_name" {
   description = "The name of a database to create."
 }
 
+variable "additional_db_sgs" {
+  type        = list(string)
+  default     = []
+  description = "Pass in a list of security groups to assign to this aurora cluster."
+}
+
 variable "allow_db_access_sgs" {
   type        = list(string)
   default     = []
-  description = "Pass in a list of security groups that will have access to your Aurora cluster. Be smart with this."
+  description = "These security groups will be added to the primary DB access security group with access to the db port."
 }
 
 variable "db_instance_class" {

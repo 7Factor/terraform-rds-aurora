@@ -23,7 +23,7 @@ resource "aws_rds_cluster" "aurora_cluster" {
 
   vpc_security_group_ids = flatten([
     aws_security_group.allow_aurora_access.id,
-    var.allow_db_access_sgs,
+    var.additional_db_sgs,
   ])
 
   database_name   = var.db_name
