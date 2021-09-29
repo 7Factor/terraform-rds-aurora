@@ -51,6 +51,7 @@ resource "aws_rds_cluster_instance" "aurora_db_delete" {
 
   lifecycle {
     prevent_destroy = false
+    ignore_changes  = [engine_version]
   }
 }
 
@@ -69,5 +70,6 @@ resource "aws_rds_cluster_instance" "aurora_db_no_delete" {
 
   lifecycle {
     prevent_destroy = true
+    ignore_changes  = [engine_version]
   }
 }
