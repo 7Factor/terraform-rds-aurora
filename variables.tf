@@ -86,3 +86,8 @@ variable "performance_insights_enabled" {
   default     = false
   description = "Enable performance insights on all database instances in the cluster. Defaults to false"
 }
+
+variable "enabled_cloudwatch_logs_exports" {
+  default     = null
+  description = "Set of log types to export to cloudwatch. If omitted, no logs will be exported. The following log types are supported: audit, error, general, slowquery, postgresql (PostgreSQL)"
+}
