@@ -88,6 +88,7 @@ variable "performance_insights_enabled" {
 }
 
 variable "enabled_cloudwatch_logs_exports" {
-  default     = null
+  type        = list(string)
+  default     = []
   description = "Set of log types to export to cloudwatch. If omitted, no logs will be exported. The following log types are supported: audit, error, general, slowquery, postgresql (PostgreSQL)"
 }
