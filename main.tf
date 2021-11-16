@@ -20,6 +20,7 @@ resource "aws_rds_cluster" "aurora_cluster" {
   db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
 
   db_cluster_parameter_group_name = var.cluster_parameter_group_name
+  enabled_cloudwatch_logs_exports = var.enabled_cloudwatch_logs_exports
 
   vpc_security_group_ids = flatten([
     aws_security_group.allow_aurora_access.id,
