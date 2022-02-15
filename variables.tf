@@ -92,3 +92,21 @@ variable "enabled_cloudwatch_logs_exports" {
   default     = []
   description = "Set of log types to export to cloudwatch. If omitted, no logs will be exported. The following log types are supported: audit, error, general, slowquery, postgresql (PostgreSQL)"
 }
+
+variable "allow_major_version_upgrade" {
+  type        = bool
+  default     = false
+  description = "Enable to allow major engine version upgrades when changing engine versions. Defaults to false"
+}
+
+variable "backup_retention_period" {
+  type        = number
+  default     = 1
+  description = "The days to retain backups for. Default 1"
+}
+
+variable "preferred_backup_window" {
+  type        = string
+  default     = null
+  description = "The daily time range during which automated backups are created if automated backups are enabled using the BackupRetentionPeriod parameter. Time in UTC. Default: A 30-minute window selected at random from an 8-hour block of time per region. E.g. 04:00-09:00"
+}
