@@ -12,10 +12,13 @@ resource "aws_rds_cluster" "aurora_cluster" {
   engine             = var.engine
   engine_version     = var.engine_version
   storage_encrypted  = var.storage_encrypted
+  allow_major_version_upgrade = var.allow_major_version_upgrade
 
   final_snapshot_identifier = "${var.db_name}-aurora-final-snapshot-${formatdate("YYYY-MM-DD-hhmmssZ", timestamp())}"
   skip_final_snapshot       = var.skip_final_snapshot
   deletion_protection       = var.deletion_protection
+  backup_retention_period   = var.backup_retention_period
+  preferred_backup_window   = var.preferred_backup_window
 
   db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
 

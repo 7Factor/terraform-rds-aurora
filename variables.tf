@@ -92,3 +92,21 @@ variable "enabled_cloudwatch_logs_exports" {
   default     = []
   description = "Set of log types to export to cloudwatch. If omitted, no logs will be exported. The following log types are supported: audit, error, general, slowquery, postgresql (PostgreSQL)"
 }
+
+variable "allow_major_version_upgrade" {
+  type        = bool
+  default     = null
+  description = "Enable to allow major engine version upgrades when changing engine versions. Uses aws_rds_cluster default."
+}
+
+variable "backup_retention_period" {
+  type        = number
+  default     = null
+  description = "The days to retain backups for. Uses aws_rds_cluster default."
+}
+
+variable "preferred_backup_window" {
+  type        = string
+  default     = null
+  description = "The daily time range during which automated backups are created if automated backups are enabled using the BackupRetentionPeriod parameter. Time in UTC. Uses aws_rds_cluster default. E.g. 04:00-09:00"
+}
