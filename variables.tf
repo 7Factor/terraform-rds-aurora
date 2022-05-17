@@ -108,5 +108,11 @@ variable "backup_retention_period" {
 variable "preferred_backup_window" {
   type        = string
   default     = null
-  description = "The daily time range during which automated backups are created if automated backups are enabled using the BackupRetentionPeriod parameter. Time in UTC. Uses aws_rds_cluster default. E.g. 04:00-09:00"
+  description = "The daily time range during which automated backups are created if automated backups are enabled using the BackupRetentionPeriod parameter. Time in UTC. Cannot overlap maintenance time. Uses aws_rds_cluster default. E.g. 04:00-09:00"
+}
+
+variable "preferred_maintenance_window" {
+  type        = string
+  default     = null
+  description = "The weekly time range during which system maintenance can occur, in (UTC) e.g., wed:04:00-wed:04:30. Cannot overlap backup time. Uses aws_rds_cluster default."
 }

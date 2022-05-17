@@ -19,6 +19,7 @@ resource "aws_rds_cluster" "aurora_cluster" {
   deletion_protection       = var.deletion_protection
   backup_retention_period   = var.backup_retention_period
   preferred_backup_window   = var.preferred_backup_window
+  preferred_maintenance_window = var.preferred_maintenance_window
 
   db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
 
