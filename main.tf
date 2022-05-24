@@ -8,17 +8,17 @@ data "aws_vpc" "primary_vpc" {
 }
 
 resource "aws_rds_cluster" "aurora_cluster" {
-  cluster_identifier = "${var.db_name}-aurora-cluster"
-  engine             = var.engine
-  engine_version     = var.engine_version
-  storage_encrypted  = var.storage_encrypted
+  cluster_identifier          = "${var.db_name}-aurora-cluster"
+  engine                      = var.engine
+  engine_version              = var.engine_version
+  storage_encrypted           = var.storage_encrypted
   allow_major_version_upgrade = var.allow_major_version_upgrade
 
-  final_snapshot_identifier = "${var.db_name}-aurora-final-snapshot-${formatdate("YYYY-MM-DD-hhmmssZ", timestamp())}"
-  skip_final_snapshot       = var.skip_final_snapshot
-  deletion_protection       = var.deletion_protection
-  backup_retention_period   = var.backup_retention_period
-  preferred_backup_window   = var.preferred_backup_window
+  final_snapshot_identifier    = "${var.db_name}-aurora-final-snapshot-${formatdate("YYYY-MM-DD-hhmmssZ", timestamp())}"
+  skip_final_snapshot          = var.skip_final_snapshot
+  deletion_protection          = var.deletion_protection
+  backup_retention_period      = var.backup_retention_period
+  preferred_backup_window      = var.preferred_backup_window
   preferred_maintenance_window = var.preferred_maintenance_window
 
   db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
@@ -35,6 +35,10 @@ resource "aws_rds_cluster" "aurora_cluster" {
   master_username = var.db_master_username
   master_password = var.db_master_password
   port            = var.db_port
+
+  lifecycle {
+    ignore_changes = [engine_version]
+  }
 }
 
 # why are there two instance blocks you might ask?
